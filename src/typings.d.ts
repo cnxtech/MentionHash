@@ -10,7 +10,7 @@ interface JQuery {
 }
 
 interface JQuery {
-  textcomplete(options?: any, callback?: any): any;
+  textcomplete(options?: any, callback?: Function): any;
   //textcomplete(strategy?: Strategy[], option?: Option[]): any;
 }
 

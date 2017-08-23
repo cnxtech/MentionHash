@@ -55,14 +55,14 @@ export class AppComponent implements OnInit, AfterViewInit {
             return ' ' + html;
           },
 
-          maxCount: 5
-          /*adapter: $.fn.textcomplete.HTMLContentEditable,
+          maxCount: 5/*,
+          adapter: $.fn.textcomplete.HTMLContentEditable,
           footer: '<div></div>'*/
         }
       ], {
         // #7 - Special adapter to handle HTMLContentEditable divs
-        adapter: ($.fn.textcomplete).HTMLContentEditable,
-        footer: '<div></div>'
+        adapter: ($.fn.textcomplete).HTMLContentEditable/*,
+        footer: '<div></div>'*/
       });
 
   }
