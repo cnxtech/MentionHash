@@ -2,10 +2,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import {ContenteditableModel} from "./contenteditable-model.directive";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ContenteditableModel
   ],
   imports: [
     BrowserModule
