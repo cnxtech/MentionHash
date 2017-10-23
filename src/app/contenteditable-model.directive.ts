@@ -1,9 +1,12 @@
-import {Directive, ElementRef, Input, Output, EventEmitter, SimpleChanges} from '@angular/core';
+import {Directive, ElementRef, EventEmitter, Input, Output, SimpleChanges} from "@angular/core";
 
 @Directive({
   selector: '[contenteditableModel]',
   host: {
-    '(keyup)': 'onKeyup()'
+    '(keyup)': 'onKeyup()',
+    '(focus)': 'onKeyup()',
+    '(blur)': 'onKeyup()',
+    '(mouseup)': 'onKeyup()'
   }
 })
 export class ContenteditableModel {

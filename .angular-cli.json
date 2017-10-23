@@ -19,11 +19,15 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
+        "../node_modules/swiper/dist/css/swiper.css",
         "styles.css"
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.min.js",
-        "assets/jquery.textcomplete.min.js"
+        "assets/jquery.textcomplete.min.js",
+        "assets/jquery.tokeninput.js",
+        "assets/jquery.mark.min.js",
+        "../node_modules/swiper/dist/js/swiper.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

@@ -1,0 +1,39 @@
+<div>
+  <swiper class="swiper" [config]="config" #usefulSwiper>
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" *ngFor="let image of images">
+
+        <div [ngSwitch]="image?.id">
+
+          <img *ngSwitchCase="1" [src]="image.image">
+
+          <div *ngSwitchCase="2"><p>{{image.image}}</p></div>
+
+          <img *ngSwitchCase="3" [src]="image.image">
+
+          <div *ngSwitchCase="4"><p>{{image.image}}</p></div>
+
+          <img *ngSwitchCase="5" [src]="image.image">
+
+          <div *ngSwitchCase="6"><p>{{image.image}}</p></div>
+
+        </div>
+
+
+      </div>
+    </div>
+    <!--<div class="swiper-pagination"></div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>-->
+
+
+  </swiper>
+
+  <div class="dots">
+    <span *ngFor="let pageNum of getTotalSlides()" [ngClass]="(pageNum === this.usefulSwiper?.swiper?.activeIndex)?'active':''"></span>
+  </div>
+
+  <!--<button>{{this.usefulSwiper?.swiper?.activeIndex}}</button>-->
+  <button (click)="previous()">Previous</button>
+  <button (click)="next()">Next</button>
+</div>

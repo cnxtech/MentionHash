@@ -1,0 +1,4 @@
+<app-dynamic-content-loader [text]="textReadMore" [class.collapsed]="isCollapsed"
+                            [style.height]="isCollapsed ? maxHeight+'px' : 'auto'"></app-dynamic-content-loader>
+<p>{{isCollapsed}}</p>
+<a *ngIf="isCollapsable" (click)="isCollapsed =! isCollapsed">Read {{isCollapsed? 'more':'less'}}</a>

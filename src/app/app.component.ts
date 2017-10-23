@@ -1,7 +1,10 @@
-import {AfterViewInit, Component, OnDestroy, OnInit} from "@angular/core";
-
+import {AfterViewInit, Component, OnInit} from "@angular/core";
 import * as $ from "jquery";
 import "../assets/jquery.textcomplete.min.js";
+import {Sharedservice} from "./mark/sharedservice.service";
+import {Observable} from "rxjs/Observable";
+import {Http} from "@angular/http";
+import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'app-root',
@@ -10,65 +13,221 @@ import "../assets/jquery.textcomplete.min.js";
 })
 export class AppComponent implements OnInit, AfterViewInit {
 
-  inputText: string;
+  inputText = 'hello this is test message';
+
+  title = 'PP';
+  searchTermhe = 'test';
+
+
+  inputText2 = '<a (click)="getUserId(111)" style="cursor: pointer;color: #2196f3">@facebook</a> <span>&nbsp;<a (click)="getUserId(111)" style="cursor: pointer;color: #2196f3">@facebook</a> <span>&nbsp;</span></span>@angular/core: Critical runtime parts of the framework needed by every application. Includes all metadata decorators, Component, Directive, dependency injection, and the component lifecycle hooks.@angular/common: The commonly needed services, pipes, and directives provided by the Angular team.@angular/compiler: Angulars Template Compiler. It understands templates and can convert them to code that makes the application run and render. Typically you donâ??t interact with the compiler directly; rather, you use it indirectly via platform-browser-dynamic or the offline template compiler.@angular/platform-browser: Everything DOM and browser related, especially the pieces that help render into the DOM. This package also includes the bootstrapStatic() method for bootstrapping applications for production builds that pre-compile templates offline.@angular/platform-browser-dynamic: Includes Providers and a bootstrap method for applications that compile templates on the client. Donâ??t use offline compilation. Use this package for bootstrapping during development and for bootstrapping plunker samples.<a (click)="getUserId(111)" style="cursor: pointer;color: #2196f3">@facebook</a> <span>&nbsp;<a (click)="getUserId(111)" style="cursor: pointer;color: #2196f3">@facebook</a> <span>&nbsp;</span></span>@angular/core: Critical runtime parts of the framework needed by every application. Includes all metadata decorators, Component, Directive, dependency injection, and the component lifecycle hooks.@angular/common: The commonly needed services, pipes, and directives provided by the Angular team.@angular/compiler: Angulars Template Compiler. It understands templates and can convert them to code that makes the application run and render. Typically you donâ??t interact with the compiler directly; rather, you use it indirectly via platform-browser-dynamic or the offline template compiler.@angular/platform-browser: Everything DOM and browser related, especially the pieces that help render into the DOM. This package also includes the bootstrapStatic() method for bootstrapping applications for production builds that pre-compile templates offline.@angular/platform-browser-dynamic: Includes Providers and a bootstrap method for applications that compile templates on the client. Donâ??t use offline compilation. Use this package for bootstrapping during development and for bootstrapping plunker samples.';
+
+  inputtextAll = '<div><p #textContent id="read-more" [text]="' + this.inputText2 + '"></p><div><a readMore [readMore-length]="' + this.returnLength(this.inputText2) + '" [readMore-element]="textContent"><span>Continue reading</span></a></div></div>';
+
+  //inputText3 = '<div><p #textContent id="read-more" [text]="<a (click)="getUserId(111)" style="color: #2196f3">@facebook</a> <span>&nbsp;<a (click)="getUserId(111)" style="color: #2196f3">@facebook</a> <span>&nbsp;</span></span>@angular/core: Critical runtime parts of the framework needed by every application. Includes all metadata decorators, Component, Directive, dependency injection, and the component lifecycle hooks.@angular/common: The commonly needed services, pipes, and directives provided by the Angular team.@angular/compiler: Angulars Template Compiler. It understands templates and can convert them to code that makes the application run and render. Typically you donâ??t interact with the compiler directly; rather, you use it indirectly via platform-browser-dynamic or the offline template compiler.@angular/platform-browser: Everything DOM and browser related, especially the pieces that help render into the DOM. This package also includes the bootstrapStatic() method for bootstrapping applications for production builds that pre-compile templates offline.@angular/platform-browser-dynamic: Includes Providers and a bootstrap method for applications that compile templates on the client. Donâ??t use offline compilation. Use this package for bootstrapping during development and for bootstrapping plunker samples."></p><div><a readMore [readMore-length]="350" [readMore-element]="textContent"><span>Continue reading</span></a></div></div>';
+
+  error = '<div><p #textContent id="read-more" [text]="<a (click)="getUserId(111)" style="cursor: pointer;color: #2196f3">@facebook</a> <span>&nbsp;<a (click)="getUserId(111)" style="cursor: pointer;color: #2196f3">@facebook</a> <span>&nbsp;</span></span>@angular/core: Critical runtime parts of the framework needed by every application. Includes all metadata decorators, Component, Directive, dependency injection, and the component lifecycle hooks.@angular/common: The commonly needed services, pipes, and directives provided by the Angular team.@angular/compiler: Angulars Template Compiler. It understands templates and can convert them to code that makes the application run and render. Typically you donâ??t interact with the compiler directly; rather, you use it indirectly via platform-browser-dynamic or the offline template compiler.@angular/platform-browser: Everything DOM and browser related, especially the pieces that help render into the DOM. This package also includes the bootstrapStatic() method for bootstrapping applications for production builds that pre-compile templates offline.@angular/platform-browser-dynamic: Includes Providers and a bootstrap method for applications that compile templates on the client. Donâ??t use offline compilation. Use this package for bootstrapping during development and for bootstrapping plunker samples."></p><div><a readMore [readMore-length]="50" [readMore-element]="textContent"><span>Continue reading</span></a></div></div>';
+
+  finalInput = '<div> <p #textContent id="read-more" [innerHTML]="'+this.inputText2+'"></p> <div class="readMore read-more-link"> <a readMore [readMore-length]="50" [readMore-element]="textContent"> <span class="more">Continue reading</span></a></div></div>';
+
+
+  getDynamicContent() {
+    return this.finalInput;
+  }
+
+  returnLength(input) {
+    return input ? 50 : 150;
+  }
 
   onTextChange(input) {
     console.log(input);
   }
 
-  constructor() {
+  public tags1 = [];
+  public autocompleteTags1 = [];
+  public autocompleteItems1 = [
+    'Banana',
+    'Orange',
+    'Apple',
+    'Pear',
+    'Grape',
+    'Potato',
+    'Peach'
+  ];
 
+  SkillSearch(text) {
+
+  }
+
+  public searchChanged(value) {
+    console.log(value);
+    // Make cool HTTP requests
+  }
+
+  searchControl = new FormControl();
+  searchText = '';
+
+  constructor(private ss: Sharedservice,
+              private http: Http) {
+    for (let i = 0; i < 4; i++) {
+      this.addSlide();
+    }
+
+    /*this.searchControl.valueChanges
+      .debounceTime(500)
+      .subscribe(value => {
+        this.searchText = value;
+        this.search();
+      });*/
+
+  }
+
+  search() {
+    // send data
+  }
+
+  public requestAutocompleteItems = (text: string): Observable<Response> => {
+    const url = `https://api.github.com/search/repositories?q=${text}`;
+    return this.http
+      .get(url)
+      .map(data => data.json().items.map(item => item.full_name));
+  };
+
+  setAppSearchData(searchdata) {
+    console.log(searchdata);
+    this.ss.setSearchObserver(searchdata);
   }
 
   ngAfterViewInit() {
 
-      console.log($.fn.jquery);
-      let lastQuery = '';
-      let NB_RESULTS_DISPLAYED = 5;
+    console.log($.fn.jquery);
+    let lastQuery = '';
+    let NB_RESULTS_DISPLAYED = 5;
 
-      $('#autocomplete-textarea').textcomplete([
-        {
-          // #3 - Rgular experession used to trigger search
-          match: /(^|\s)@(\w*(?:\s*\w*)*)$/,
 
-          // #4 - Function called at every new keystroke
-          search: function (query, callback) {
-            lastQuery = query;
-            console.log(lastQuery);
-            var words = ['google', 'facebook', 'github', 'microsoft', 'yahoo'];
-            callback($.map(words, function (word) {
+    $('#autocomplete-textarea').textcomplete([
+      {
+        // #3 - Rgular experession used to trigger search
+        match: /(^|\s)@(\w*(?:\s*\w*)*)$/,
 
-              return word.indexOf(lastQuery) === 0 ? word : null;
-            }));
-          },
+        // #4 - Function called at every new keystroke
+        search: function (query, callback) {
+          lastQuery = query;
+          console.log(lastQuery);
 
-          // #5 - Template used to display each result obtained by the Algolia API
-          template: function (hit) {
-            // Returns the highlighted version of the name attribute
-            return hit;
-          },
+          var words = ['google', 'facebook', 'github', 'microsoft', 'yahoo', 'કેમ છો?', 'कैसे हो?'];
+          callback($.map(words, function (word) {
 
-          // #6 - Template used to display the selected result in the contenteditable's div
-          replace: function (hit) {
-            let html = '<a href="" style="background: cadetblue">';
-            html += '@' + hit + '</a> ';
-            return ' ' + html;
-          },
+            return word.indexOf(lastQuery) === 0 ? word : null;
+          }));
+        },
 
-          maxCount: 5/*,
-          adapter: $.fn.textcomplete.HTMLContentEditable,
-          footer: '<div></div>'*/
-        }
-      ], {
-        // #7 - Special adapter to handle HTMLContentEditable divs
-        adapter: ($.fn.textcomplete).HTMLContentEditable/*,
-        footer: '<div></div>'*/
-      });
+        // #5 - Template used to display each result obtained by the Algolia API
+        template: function (hit) {
+          // Returns the highlighted version of the name attribute
+          return hit;
+        },
+
+        // #6 - Template used to display the selected result in the contenteditable's div
+        replace: function (hit) {
+          let html = '<a (click)="getUserId(' + 111 + ')" style="color: #2196f3">';
+          html += '@' + hit + '</a> ';
+          return html;
+        },
+
+        maxCount: 5
+      }, {
+        // #3 - Rgular experession used to trigger search
+        match: /(^|\s)#(\w*(?:\s*\w*)*)$/,
+
+        // #4 - Function called at every new keystroke
+        search: function (query, callback) {
+          lastQuery = query;
+          console.log(lastQuery);
+          var words = ['google', 'facebook', 'github', 'microsoft', 'yahoo', 'કેમ છો?', 'कैसे हो?'];
+          callback($.map(words, function (word) {
+
+            return word.indexOf(lastQuery) === 0 ? word : null;
+          }));
+        },
+
+        // #5 - Template used to display each result obtained by the Algolia API
+        template: function (hit) {
+          // Returns the highlighted version of the name attribute
+          return hit;
+        },
+
+        // #6 - Template used to display the selected result in the contenteditable's div
+        replace: function (hit) {
+          let html = '<a style="color: #2196f3">';
+          html += '#' + hit + '</a> ';
+          return html;
+        },
+
+        maxCount: 5
+      }
+    ], {
+      // type any error resolved
+      // https://medium.com/@sandeepkgupta007/it-might-be-helpful-for-people-to-use-72196c34475b
+      // #7 - Special adapter to handle HTMLContentEditable divs
+      adapter: (<any>$.fn.textcomplete).HTMLContentEditable,
+      footer: '<div></div>'
+    });
 
   }
 
   ngOnInit() {
 
+
   }
 
+  getUserId(id) {
+    console.log(id);
+    console.log('id');
+  }
+
+
+  messages: any = [];
+
+  loading = false;
+  total = 5;
+  page = 1;
+  limit = 1;
+
+  goToPage(n: number): void {
+    this.page = n;
+    console.log(this.page);
+    //this.getMessages();
+  }
+
+  onNext(): void {
+    this.page++;
+    console.log(this.page);
+    //this.getMessages();
+  }
+
+  onPrev(): void {
+    this.page--;
+    console.log(this.page);
+    //this.getMessages();
+  }
+
+
+  public myInterval: number = 0;
+  public noWrapSlides: boolean = true;
+  public slides: Array<any> = [];
+
+
+  public addSlide(): void {
+    let newWidth = 600 + this.slides.length + 1;
+    this.slides.push({
+      image: `//placekitten.com/${newWidth}/300`,
+      text: `${['More', 'Extra', 'Lots of', 'Surplus'][this.slides.length % 4]}
+      ${['Cats', 'Kittys', 'Felines', 'Cutes'][this.slides.length % 4]}`
+    });
+  }
+
+  public removeSlide(index: number): void {
+    this.slides.splice(index, 1);
+  }
 }
+

@@ -1,10 +1,129 @@
 <div class="container">
-  <div class="row">
+  <div class="row" style="margin-bottom: 100px">
     <div class="col-sm-6 col-sm-offset-3">
-      <div class="form-control" id="autocomplete-textarea" contenteditable="true"  [(contenteditableModel)]="inputText"></div>
+      <div class="form-control" id="autocomplete-textarea" contenteditable="true"
+           [(contenteditableModel)]="inputText"></div>
       <br>
       <br>
-      <span>{{inputText}}</span>
+
+      <input type="text" name="search" #searchApp (keyup)="setAppSearchData(searchApp.value)"/>
+      <div Mark>
+        <span>{{inputText}}</span>
+        <p [innerHTML]="inputText | sanitizeHtml"></p>
+      </div>
+
+      <!--<p>{{getDynamicContent()}}</p>-->
+
+      <!--<app-dynamic-content-loader [text]="inputText2"></app-dynamic-content-loader>-->
+
+      <runtime-content [template]="inputText2"></runtime-content>
+
+      <!--<div>
+        <runtime-content #textContent id="read-more" [template]="inputText2"></runtime-content>
+        <div class="readMore read-more-link">
+          <a readMore [readMore-length]="textContent ? 50 : 150" [readMore-element]="textContent">
+            <span class="more">Continue reading</span>
+          </a>
+        </div>
+      </div>-->
+
+
+      <!--<form ngForm="searchForm">
+        <input-debounce [delay]="500" placeholder="Search..." (value)="searchChanged($event)"></input-debounce>
+      </form>-->
+
+      <!--<div>
+        <h2>Debounce in Angular2</h2>
+        <input type="text" formControl="searchControl">
+        <p>result: {{ searchText }}</p>
+      </div>-->
+
     </div>
+
+
+    <div class="col-sm-6 col-sm-offset-3" *ngIf="false">
+
+      <div Mention onkeypress="return (this.innerHTML.length <= 50)" class="form-control" id="autocompletetextarea"
+           contenteditable="true"
+           [(contenteditableModel)]="inputText"></div>
+      <br>
+      <br>
+      <div Mention onkeypress="return (this.innerHTML.length <= 50)" class="form-control" id="autocomplete-input"
+           contenteditable="true"
+           [(contenteditableModel)]="inputText"></div>
+
+
+      <input type="text" name="autocompleteQ" id="autocompleteQ" #autocompleteQ AutocompleteSearch>
+
+
+      <input type="text" id="demo-input-local" name="blah" placeholder="Blah">
+
+      <!--<rl-tag-input formControlName="tt" id="tt"
+                    [autocomplete]="true"
+                    [autocompleteItems]="autocompleteItems1"
+                    [autocompleteMustMatch]="true"
+                    [autocompleteSelectFirstItem]="false"
+                    [(ngModel)]="tags1" placeholder="Add skills"></rl-tag-input>-->
+
+      <div style="padding: 20px; background: gray">
+        <ngu-letter-avatar [avatar-width]="'80px'"
+                           [avatar-height]="'80px'"
+                           [avatar-shape]="'round'"
+                           [avatar-custom-bg-color]="'#2196f3'"
+                           [avatar-border-style]="'border:3px solid white'"
+                           avatar-data='{{title}}' [avatar-char-count]="2"></ngu-letter-avatar>
+      </div>
+
+      <!--<tag-input [ngModel]="[]"
+                 [placeholder]="'Enter a new repo'"
+                 [onTextChangeDebounce]="500"
+                 [secondaryPlaceholder]="'Search in Github'"
+                 [onlyFromAutocomplete]="false">
+        <tag-input-dropdown
+          [autocompleteObservable]="requestAutocompleteItems">
+          <ng-template let-item="item" let-index="index">
+            {{ item.display }}
+          </ng-template>
+        </tag-input-dropdown>
+      </tag-input>-->
+
+      <!--<div>
+        <rl-tag-input
+          class="aa-dropdown-menu"
+          [addOnBlur]="false"
+          [autocomplete]="true"
+          [autocompleteItems]="autocompleteItems1"
+          [(ngModel)]="autocompleteTags1"
+          placeholder="Testing placeholder">
+        </rl-tag-input>
+      </div>
+      <div>
+        <h4>Bound List:</h4>
+        <pre>
+		{{autocompleteTags1 | json}}
+	</pre>-->
+
+    </div>
+
+    <div class="col-sm-6 col-sm-offset-3" *ngIf="false">
+      <carousel [interval]="myInterval" [noWrap]="noWrapSlides">
+        <slide *ngFor="let slidez of slides; let index=index"
+               [active]="slidez.active">
+
+          <img [src]="slidez.image" style="width:100%;height: 100%;margin:auto;">
+
+          <!--<div class="carousel-caption">
+            <h4>Slide {{index}}</h4>
+
+            <p>{{slidez.text}}</p>
+
+          </div>-->
+        </slide>
+      </carousel>
+    </div>
+
   </div>
+
+
+  <!--<app-pagination></app-pagination>-->
 </div>

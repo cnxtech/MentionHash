@@ -10,8 +10,23 @@ interface JQuery {
 }
 
 interface JQuery {
-  textcomplete(options?: any, callback?: Function): any;
-  //textcomplete(strategy?: Strategy[], option?: Option[]): any;
+  textcomplete(options?: any[], callback?: any): any;
+  textcomplete(destory?: any): any;
+}
+
+interface JQuery {
+  mark(keywork: any, options: any[]): any;
+  markRegExp(keywork: any, options: any[]): any;
+  markRanges(ranges: any, options: any[]): any;
+  unmark(options: any[]): any;
+}
+
+interface JQuery {
+  autocomplete(keyword: any, options: any[]);
+}
+
+interface JQuery {
+  tokenInput(options?: any);
 }
 
 
