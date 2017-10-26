@@ -1,6 +1,127 @@
 /* ------------------------------------
      COMMON STYLE
    ------------------------------------ */
+/*loader 1*/
+.loader {
+  font-size: 10px;
+  margin: 50px auto;
+  text-indent: -9999em;
+  width: 11em;
+  height: 11em;
+  border-radius: 50%;
+  background: #36c1f5;
+  background: -moz-linear-gradient(left, #36c1f5 10%, rgba(54,193,245, 0) 42%);
+  background: -webkit-linear-gradient(left, #36c1f5 10%, rgba(54,193,245, 0) 42%);
+  background: -o-linear-gradient(left, #36c1f5 10%, rgba(54,193,245, 0) 42%);
+  background: -ms-linear-gradient(left, #36c1f5 10%, rgba(54,193,245, 0) 42%);
+  background: linear-gradient(to right, #36c1f5 10%, rgba(54,193,245, 0) 42%);
+  position: relative;
+  -webkit-animation: load3 1.4s infinite linear;
+  animation: load3 1.4s infinite linear;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+}
+.loader:before {
+  width: 50%;
+  height: 50%;
+  background: #36c1f5;
+  border-radius: 100% 0 0 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '';
+}
+.loader:after {
+  background: #ffffff;
+  width: 75%;
+  height: 75%;
+  border-radius: 50%;
+  content: '';
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+@-webkit-keyframes load3 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes load3 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+/*loader 2*/
+#loader {
+  /* Uncomment this to make it run! */
+  /*
+     animation: loader 5s linear infinite;
+  */
+
+  position: absolute;
+  /*top: calc(50% - 20px);
+  left: calc(50% - 20px);*/
+}
+@keyframes loader {
+  0% { left: -100px }
+  100% { left: 110%; }
+}
+#box {
+  width: 50px;
+  height: 50px;
+  background: #36c1f5;
+  animation: animate .5s linear infinite;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 3px;
+}
+@keyframes animate {
+  17% { border-bottom-right-radius: 3px; }
+  25% { transform: translateY(9px) rotate(22.5deg); }
+  50% {
+    transform: translateY(18px) scale(1,.9) rotate(45deg) ;
+    border-bottom-right-radius: 40px;
+  }
+  75% { transform: translateY(9px) rotate(67.5deg); }
+  100% { transform: translateY(0) rotate(90deg); }
+}
+#shadow {
+  width: 50px;
+  height: 5px;
+  background: #000;
+  opacity: 0.1;
+  position: absolute;
+  top: 59px;
+  left: 0;
+  border-radius: 50%;
+  animation: shadow .5s linear infinite;
+}
+@keyframes shadow {
+  50% {
+    transform: scale(1.2,1);
+  }
+}
+
+
+
+
+
 #autocomplete-textarea {
   min-height: 100px;
   width: 100%;
