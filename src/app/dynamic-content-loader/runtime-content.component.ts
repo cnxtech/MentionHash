@@ -17,7 +17,7 @@ import {CommonModule} from "@angular/common";
 @Component({
   selector: 'runtime-content',
   template: `
-    <div #container></div>` // '<p #textContent id="read-more"> </p> <div class="read-more-link"> <a readMore [readMore-length]="50" [readMore-element]="textContent"> <span class="less">Less <i class="fa fa-angle-right" aria-hidden="true"></i></span> <span class="more">More <i class="fa fa-angle-right" aria-hidden="true"></i></span> </a> </div>'
+    <div style="text-align: justify" #container></div>` // '<p #textContent id="read-more"> </p> <div class="read-more-link"> <a readMore [readMore-length]="50" [readMore-element]="textContent"> <span class="less">Less <i class="fa fa-angle-right" aria-hidden="true"></i></span> <span class="more">More <i class="fa fa-angle-right" aria-hidden="true"></i></span> </a> </div>'
 })
 export class RuntimeContentComponent implements OnInit {
 

@@ -27,6 +27,7 @@ import {EventEmitterClickComponent} from "./event-emitter-click-component/event-
 import {RuntimeContentComponent} from "./dynamic-content-loader/runtime-content.component";
 import {InputDebounceComponent} from "./input-debounce/input-debounce.component";
 import {FormsModule} from "@angular/forms";
+import { ImageCenterCropDirective } from './image-center-crop/image-center-crop.directive';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import {FormsModule} from "@angular/forms";
     TokenInputDirective,
     EventEmitterClickComponent,
     InputDebounceComponent,
+    ImageCenterCropDirective,
   ],
   imports: [
     BrowserModule,

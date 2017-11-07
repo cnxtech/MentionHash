@@ -2,8 +2,8 @@
 
   <div class="row" style="margin-bottom: 100px">
     <div class="col-sm-6 col-sm-offset-3">
-      <div class="form-control" id="autocomplete-textarea" contenteditable="true"
-           [(contenteditableModel)]="inputText"></div>
+      <!--<div class="form-control" id="autocomplete-textarea" contenteditable="true"
+           [(contenteditableModel)]="inputText"></div>-->
       <br>
       <br>
 
@@ -123,8 +123,99 @@
       </carousel>
     </div>
 
+    <div class="form-control" id="autocomplete-textarea" contenteditable="true"
+         [(contenteditableModel)]="inputText"></div>
   </div>
 
+  <div class="thumbnail">
+    <img [src]="image1" alt="Image" />
+  </div>
+  <div class="thumbnail">
+    <img [src]="imagePortrait2" class="portrait" alt="Image" />
+  </div>
+
+  <h1>Image reverse</h1>
+
+  <div class="thumbnail">
+    <img [src]="imagePortrait2" alt="Image" />
+  </div>
+  <div class="thumbnail">
+    <img [src]="image1" alt="Image" />
+  </div>
+
+  <div class="thumbnail">
+    <img [src]="imagecover" alt="Image" />
+  </div>
+
+  <div class="thumbnail">
+    <img [src]="imagePortrait" alt="Image" />
+  </div>
+
+  <div class="thumbnail">
+    <img [src]="imagePiyush" alt="Image" />
+  </div>
+
+  <div class="thumbnail">
+    <img [src]="imageCover2" alt="Image" />
+  </div>
+
+  <div class="thumbnail">
+    <img [src]="imageCover3" alt="Image" />
+  </div>
+
+  <div class="thumbnail">
+    <img [src]="imageCover4" alt="Image" />
+  </div>
+
+  <div class="thumbnail">
+    <img [src]="imageCover5" alt="Image" />
+  </div>
+
+  <h1>Center croped div</h1>
+
+  <div class="center-cropped" style="margin-top: 20px">
+    <img [src]="imagePortrait2" alt="" />
+  </div>
+
+  <div class="center-cropped" style="margin-top: 20px">
+    <img [src]="image1" alt="" />
+  </div>
+
+  <div class="center-cropped" style="margin-top: 20px">
+    <img [src]="imagecover" alt="" />
+  </div>
+
+  <div class="center-cropped" style="margin-top: 20px">
+    <img [src]="imagePortrait" alt="" />
+  </div>
+
+  <div class="center-cropped" style="margin-top: 20px">
+    <img [src]="imagePiyush" alt="" />
+  </div>
+
+  <div class="center-cropped" style="margin-top: 20px">
+    <img [src]="imageCover2" alt="" />
+  </div>
+
+  <div class="center-cropped" style="margin-top: 20px">
+    <img [src]="imageCover3" alt="" />
+  </div>
+
+  <div class="center-cropped" style="margin-top: 20px">
+    <img [src]="imageCover4" alt="" />
+  </div>
+
+  <div class="center-cropped" style="margin-top: 20px">
+    <img [src]="imageCover5" alt="" />
+  </div>
+
+  <div class="center-cropped" style="margin-top: 20px;margin-bottom: 50px">
+    <img [src]="imageBig" alt="" />
+  </div>
+
+  <!--<div style="width: 150px; height: 150px;overflow: hidden; position: relative;">
+    <img [src]="imageBig" style="position: absolute;" onload="OnImageLoad(event);"/>
+  </div>-->
 
   <!--<app-pagination></app-pagination>-->
 

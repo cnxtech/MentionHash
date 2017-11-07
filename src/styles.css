@@ -1,6 +1,15 @@
 /* ------------------------------------
      COMMON STYLE
    ------------------------------------ */
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight:100;
+  color: #333333;
+}
+
+
 /*loader 1*/
 .loader {
   font-size: 10px;
@@ -10,11 +19,11 @@
   height: 11em;
   border-radius: 50%;
   background: #36c1f5;
-  background: -moz-linear-gradient(left, #36c1f5 10%, rgba(54,193,245, 0) 42%);
-  background: -webkit-linear-gradient(left, #36c1f5 10%, rgba(54,193,245, 0) 42%);
-  background: -o-linear-gradient(left, #36c1f5 10%, rgba(54,193,245, 0) 42%);
-  background: -ms-linear-gradient(left, #36c1f5 10%, rgba(54,193,245, 0) 42%);
-  background: linear-gradient(to right, #36c1f5 10%, rgba(54,193,245, 0) 42%);
+  background: -moz-linear-gradient(left, #36c1f5 10%, rgba(54, 193, 245, 0) 42%);
+  background: -webkit-linear-gradient(left, #36c1f5 10%, rgba(54, 193, 245, 0) 42%);
+  background: -o-linear-gradient(left, #36c1f5 10%, rgba(54, 193, 245, 0) 42%);
+  background: -ms-linear-gradient(left, #36c1f5 10%, rgba(54, 193, 245, 0) 42%);
+  background: linear-gradient(to right, #36c1f5 10%, rgba(54, 193, 245, 0) 42%);
   position: relative;
   -webkit-animation: load3 1.4s infinite linear;
   animation: load3 1.4s infinite linear;
@@ -22,6 +31,7 @@
   -ms-transform: translateZ(0);
   transform: translateZ(0);
 }
+
 .loader:before {
   width: 50%;
   height: 50%;
@@ -32,6 +42,7 @@
   left: 0;
   content: '';
 }
+
 .loader:after {
   background: #ffffff;
   width: 75%;
@@ -45,6 +56,7 @@
   bottom: 0;
   right: 0;
 }
+
 @-webkit-keyframes load3 {
   0% {
     -webkit-transform: rotate(0deg);
@@ -55,6 +67,7 @@
     transform: rotate(360deg);
   }
 }
+
 @keyframes load3 {
   0% {
     -webkit-transform: rotate(0deg);
@@ -77,10 +90,16 @@
   /*top: calc(50% - 20px);
   left: calc(50% - 20px);*/
 }
+
 @keyframes loader {
-  0% { left: -100px }
-  100% { left: 110%; }
+  0% {
+    left: -100px
+  }
+  100% {
+    left: 110%;
+  }
 }
+
 #box {
   width: 50px;
   height: 50px;
@@ -91,16 +110,26 @@
   left: 0;
   border-radius: 3px;
 }
+
 @keyframes animate {
-  17% { border-bottom-right-radius: 3px; }
-  25% { transform: translateY(9px) rotate(22.5deg); }
+  17% {
+    border-bottom-right-radius: 3px;
+  }
+  25% {
+    transform: translateY(9px) rotate(22.5deg);
+  }
   50% {
-    transform: translateY(18px) scale(1,.9) rotate(45deg) ;
+    transform: translateY(18px) scale(1, .9) rotate(45deg);
     border-bottom-right-radius: 40px;
   }
-  75% { transform: translateY(9px) rotate(67.5deg); }
-  100% { transform: translateY(0) rotate(90deg); }
+  75% {
+    transform: translateY(9px) rotate(67.5deg);
+  }
+  100% {
+    transform: translateY(0) rotate(90deg);
+  }
 }
+
 #shadow {
   width: 50px;
   height: 5px;
@@ -112,15 +141,12 @@
   border-radius: 50%;
   animation: shadow .5s linear infinite;
 }
+
 @keyframes shadow {
   50% {
-    transform: scale(1.2,1);
+    transform: scale(1.2, 1);
   }
 }
-
-
-
-
 
 #autocomplete-textarea {
   min-height: 100px;
@@ -346,3 +372,75 @@ swiper {
   font-weight: bold;
   font-style: normal;
 }
+
+/*solution 1*/
+.thumbnail {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+}
+
+.thumbnail img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  min-height: 100%;
+  min-width: 100%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+/*.thumbnail img.portrait {
+  width: 100%;
+  height: auto;
+}*/
+
+/*solution 2*/
+div.center-cropped {
+  width: 600px;
+  height: 315px;
+
+  overflow: hidden;
+}
+
+div.center-cropped img {
+  width: 100%;
+  top: 50%;
+  position: relative;
+  transform: translateY(-50%);
+}
+
+
+/*solution 3*/
+div.aspectcorrect {
+  border: 10px solid #333333;
+  overflow: hidden;
+  position: relative;
+}
+
+div.widescreen {
+  width: 320px;
+  height: 180px;
+}
+
+div.standard {
+  width: 240px;
+  height: 180px;
+}
+
+div.portrait {
+  width: 180px;
+  height: 320px;
+}
+
+div.square {
+  width: 240px;
+  height: 240px;
+}
+
+div.aspectcorrect > img {
+  position: absolute;
+}
+

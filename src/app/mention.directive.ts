@@ -83,6 +83,8 @@ export class MentionDirective implements AfterViewInit,OnDestroy {
       // https://medium.com/@sandeepkgupta007/it-might-be-helpful-for-people-to-use-72196c34475b
       // #7 - Special adapter to handle HTMLContentEditable divs
       adapter: (<any>$.fn.textcomplete).HTMLContentEditable,
+      debounce: 300,
+      rightEdgeOffset: 100,
       footer: '<div></div>'
     });
 
