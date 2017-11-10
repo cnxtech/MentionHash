@@ -7,6 +7,8 @@ import {Http} from "@angular/http";
 import {FormControl} from "@angular/forms";
 import {ApiResponse} from "./interfaces/api-response";
 
+// import * as mData from "../../node_modules/url-metadata/index.js";
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -14,7 +16,7 @@ import {ApiResponse} from "./interfaces/api-response";
 })
 export class AppComponent implements OnInit, AfterViewInit {
 
-  inputText = 'hello this is test message';
+  inputText;
 
   title = 'PP';
   searchTermhe = 'test';
@@ -29,7 +31,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   imageBig = 'http://www.hdwallpapery.com/static/images/high-resolution-nature-wallpaper.jpg';
 
-  imagePiyush = 'https://s3.ap-south-1.amazonaws.com/jambos/jambo_1508239146242.jpg';
+  imagePiyush = 'https://naturecanada.ca/wp-content/uploads/2015/09/Anne-Murray-Featured-Image.jpg';
 
   imageCover2 = 'https://naturecanada.ca/wp-content/uploads/2015/09/Anne-Murray-Featured-Image.jpg';
 
@@ -204,8 +206,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-
-
+   // getUrl();
   }
 
   public getResponse(apiResponse:ApiResponse) {
@@ -326,5 +327,18 @@ export class AppComponent implements OnInit, AfterViewInit {
 
     return result;
   }
+
+
+}
+
+function getUrl() {
+  /*const urlMetadata = require('url-metadata')
+  urlMetadata('https://www.bonoboz.in/').then(
+    function (metadata) { // success handler
+      console.log('metadata',metadata)
+    },
+    function (error) { // failure handler
+      console.log(error)
+    })*/
 }
 

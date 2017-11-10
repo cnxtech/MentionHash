@@ -41,6 +41,7 @@
     "sass-loader": "^6.0.6",
     "swiper": "^4.0.3",
     "typeahead": "^0.2.2",
+    "url-metadata": "^2.1.7",
     "zone.js": "^0.8.18"
   },
   "devDependencies": {

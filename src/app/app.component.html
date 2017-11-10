@@ -2,8 +2,15 @@
 
   <div class="row" style="margin-bottom: 100px">
     <div class="col-sm-6 col-sm-offset-3">
+      <br>
+      <br>
+
+      <div class="card">
+        <div data-placeholder="What are you wating for?" id="autocomplete-textarea" contenteditable="true" [(contenteditableModel)]="inputText"></div>
+      </div>
       <!--<div class="form-control" id="autocomplete-textarea" contenteditable="true"
            [(contenteditableModel)]="inputText"></div>-->
+
       <br>
       <br>
 
@@ -123,9 +130,10 @@
       </carousel>
     </div>
 
-    <div class="form-control" id="autocomplete-textarea" contenteditable="true"
-         [(contenteditableModel)]="inputText"></div>
+
   </div>
+
+
 
   <div class="thumbnail">
     <img [src]="image1" alt="Image" />

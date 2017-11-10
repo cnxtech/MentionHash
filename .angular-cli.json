@@ -27,7 +27,8 @@
         "assets/jquery.textcomplete.min.js",
         "assets/jquery.tokeninput.js",
         "assets/jquery.mark.min.js",
-        "../node_modules/swiper/dist/js/swiper.js"
+        "../node_modules/swiper/dist/js/swiper.js",
+        "../node_modules/url-metadata/index.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

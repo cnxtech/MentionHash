@@ -156,8 +156,11 @@ body {
   -webkit-appearance: textarea;
   border: 0px solid gray;
   overflow: auto;
-  padding: 2px;
+  padding: 10px;
   resize: both;
+  font-weight: 300;
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
 }
 
 #autocomplete-textarea a {
@@ -172,7 +175,7 @@ body {
   color: #000;
   -moz-appearance: textfield-multiline;
   -webkit-appearance: textarea;
-  border: 1px solid gray;
+  border: 1px #dadada;
   overflow: auto;
   padding: 2px;
   resize: both;
@@ -444,3 +447,13 @@ div.aspectcorrect > img {
   position: absolute;
 }
 
+.card {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+  /*box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);*/
+}
