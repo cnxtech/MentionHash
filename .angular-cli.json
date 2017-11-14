@@ -19,16 +19,21 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
+        "../node_modules/bootstrap/dist/css/bootstrap.min.css",
         "../node_modules/swiper/dist/css/swiper.css",
         "styles.css"
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.min.js",
+        "../node_modules/bootstrap/dist/js/bootstrap.js",
         "assets/jquery.textcomplete.min.js",
         "assets/jquery.tokeninput.js",
         "assets/jquery.mark.min.js",
         "../node_modules/swiper/dist/js/swiper.js",
-        "../node_modules/url-metadata/index.js"
+        "../node_modules/url-metadata/index.js",
+        "assets/jquery.timepicker.min.js",
+        "assets/bootstrap-datepicker.min.js",
+        "assets/jquery.datepair.min.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

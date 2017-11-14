@@ -28,6 +28,9 @@ import {RuntimeContentComponent} from "./dynamic-content-loader/runtime-content.
 import {InputDebounceComponent} from "./input-debounce/input-debounce.component";
 import {FormsModule} from "@angular/forms";
 import { ImageCenterCropDirective } from './image-center-crop/image-center-crop.directive';
+import { TimepickerDirective } from './timepicker/timepicker.directive';
+import { DatepickerDirective } from './timepicker/datepicker.directive';
+import { DatepairDirective } from './timepicker/datepair/datepair.directive';
 
 @NgModule({
   declarations: [
@@ -51,6 +54,9 @@ import { ImageCenterCropDirective } from './image-center-crop/image-center-crop.
     EventEmitterClickComponent,
     InputDebounceComponent,
     ImageCenterCropDirective,
+    TimepickerDirective,
+    DatepickerDirective,
+    DatepairDirective,
   ],
   imports: [
     BrowserModule,

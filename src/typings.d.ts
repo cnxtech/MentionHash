@@ -29,6 +29,17 @@ interface JQuery {
   tokenInput(options?: any);
 }
 
+interface JQuery {
+  timepicker(options?: any);
+  datepicker(): any;
+  datepicker(methodName: string): any;
+  datepicker(methodName: string, params: any): any;
+  datepicker(options: any): any;
+
+  datepair(): any;
+  datepair(options?: any): any;
+}
+
 
 interface Strategy {
   // Required

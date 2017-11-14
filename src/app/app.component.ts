@@ -1,6 +1,7 @@
 import {AfterViewInit, Component, OnInit} from "@angular/core";
 import * as $ from "jquery";
 import "../assets/jquery.textcomplete.min.js";
+import '../assets/jquery.datepair.min.js';
 import {Sharedservice} from "./mark/sharedservice.service";
 import {Observable} from "rxjs/Observable";
 import {Http} from "@angular/http";
@@ -15,6 +16,20 @@ import {ApiResponse} from "./interfaces/api-response";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit, AfterViewInit {
+
+  timeStart:string;
+  dateStart:string;
+
+  timeEnd:string;
+  dateEnd:string;
+
+  rangeError: any;
+  rangeIncomplete: any
+  rangeSelected: any;
+
+
+  timeT:string;
+  dateS:string;
 
   inputText;
 
@@ -131,7 +146,6 @@ export class AppComponent implements OnInit, AfterViewInit {
     let lastQuery = '';
     let NB_RESULTS_DISPLAYED = 5;
 
-
     $('#autocomplete-textarea').textcomplete([
       {
         // #3 - Rgular experession used to trigger search
@@ -155,9 +169,10 @@ export class AppComponent implements OnInit, AfterViewInit {
           return hit;
         },
 
+
         // #6 - Template used to display the selected result in the contenteditable's div
         replace: function (hit) {
-          let html = '<a (click)="getUserId(' + 111 + ')" style="color: #2196f3">';
+          let html = ' '+'<a (click)="getUserId(' + 111 + ')" style="color: #2196f3">';
           html += '@' + hit + '</a> ';
           return html;
         },
@@ -186,7 +201,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
         // #6 - Template used to display the selected result in the contenteditable's div
         replace: function (hit) {
-          let html = '<a style="color: #2196f3">';
+          let html = ' '+'<a style="color: #2196f3">';
           html += '#' + hit + '</a> ';
           return html;
         },

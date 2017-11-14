@@ -2,6 +2,24 @@
 
   <div class="row" style="margin-bottom: 100px">
     <div class="col-sm-6 col-sm-offset-3">
+
+      <p id="jqueryExample" >
+        <input type="text" datePicker class="date start" [(ngModel)]="dateStart" [optionsDate]="{format: 'mm/dd/yyyy',autoclose: true}" />
+        <input type="text" timePicker class="time start" [(ngModel)]="timeStart" [optionsTime]="{disableTextInput: false,'timeFormat': 'h:i A',showDuration: false}" /> to
+        <input type="text" timePicker class="time end" [(ngModel)]="timeEnd" [optionsTime]="{disableTextInput: false,'timeFormat': 'h:i A',showDuration: false}" />
+        <input type="text" datePicker class="date end" [(ngModel)]="dateEnd" [optionsDate]="{format: 'mm/dd/yyyy',autoclose: true}"/>
+      </p>
+
+      <br>
+      <br>
+      <br>
+      <input type="text" timePicker [(ngModel)]="timeT" [optionsTime]="{disableTextInput: false,'timeFormat': 'h:i A',showDuration: false}">
+
+      <br>
+
+      <input type="text" datePicker [(ngModel)]="dateS" [optionsDate]="{format: 'm/d/yyyy',autoclose: true}">
+
+      <br>
       <br>
       <br>
 

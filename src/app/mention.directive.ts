@@ -38,14 +38,15 @@ export class MentionDirective implements AfterViewInit,OnDestroy {
         // #5 - Template used to display each result obtained by the Algolia API
         template: function (hit) {
           // Returns the highlighted version of the name attribute
-          return hit;
+          return ' '+hit;
         },
 
+        index: 3,
         // #6 - Template used to display the selected result in the contenteditable's div
         replace: function (hit) {
           let html = '<a href="" style="color: #2196f3">';
           html += '@' + hit + '</a> ';
-          return '' + html;
+          return ' ' + html;
         },
 
         maxCount: 5
@@ -66,14 +67,15 @@ export class MentionDirective implements AfterViewInit,OnDestroy {
         // #5 - Template used to display each result obtained by the Algolia API
         template: function (hit) {
           // Returns the highlighted version of the name attribute
-          return hit;
+          return ' '+hit;
         },
 
+        index: 3,
         // #6 - Template used to display the selected result in the contenteditable's div
         replace: function (hit) {
           let html = '<a href="" style="color: #2196f3">';
           html += '#' + hit + '</a> ';
-          return '' + html;
+          return  html;
         },
 
         maxCount: 5
