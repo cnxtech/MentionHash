@@ -10,7 +10,6 @@ import { ReadMoreDynamicDirective } from './read-more-dynamic.directive';
 import { MyInhertLinkDirective } from './my-inhert-link.directive';
 import {MentionHashtagComponent} from "./mention-hashtag/mention-hashtag.component";
 import {MentionDirective} from "./mention.directive";
-import { MarkDirective } from './mark/mark.directive';
 import {Sharedservice} from "./mark/sharedservice.service";
 import {PagerComponent} from "./pager/pager.component";
 import {PaginationComponent} from "./pagination/pagination.component";
@@ -31,6 +30,8 @@ import { ImageCenterCropDirective } from './image-center-crop/image-center-crop.
 import { TimepickerDirective } from './timepicker/timepicker.directive';
 import { DatepickerDirective } from './timepicker/datepicker.directive';
 import { DatepairDirective } from './timepicker/datepair/datepair.directive';
+import { ContenteditableDirective } from './directives/contenteditable.directive';
+import {LazyLoadDirective} from "./lazyload/lazy-load.directive";
 
 @NgModule({
   declarations: [
@@ -45,7 +46,6 @@ import { DatepairDirective } from './timepicker/datepair/datepair.directive';
     ReadMoreDynamicDirective,
     MentionDirective,
     MyInhertLinkDirective,
-    MarkDirective,
     PagerComponent,
     PaginationComponent,
     AutocompleteSearchDirective,
@@ -57,6 +57,8 @@ import { DatepairDirective } from './timepicker/datepair/datepair.directive';
     TimepickerDirective,
     DatepickerDirective,
     DatepairDirective,
+    ContenteditableDirective,
+    LazyLoadDirective
   ],
   imports: [
     BrowserModule,

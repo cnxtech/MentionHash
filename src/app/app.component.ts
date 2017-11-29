@@ -31,14 +31,27 @@ export class AppComponent implements OnInit, AfterViewInit {
   timeT:string;
   dateS:string;
 
+  startDate1: Date = new Date();
+
   inputText;
 
   title = 'PP';
   searchTermhe = 'test';
 
+  defaultImage: string;
+
+
+  isLoad: boolean = true;
+
+  setLoad(event) {
+    setTimeout(()=> {
+      this.isLoad = event;
+    },1);
+  }
+
   image1 = 'https://s3.ap-south-1.amazonaws.com/jambos/jambo_1508996553924.png';
 
-  imagePortrait2 = 'https://s3.ap-south-1.amazonaws.com/jambos/jambo_1509088470342.jpg';
+  imagePortrait2 = 'http://www.logcollectionhotels.co.za/press/graywoodsignature_big.jpg'; //'https://s3.ap-south-1.amazonaws.com/jambos/jambo_1509088470342.jpg';
 
   imagecover = 'https://naturecanada.ca/wp-content/uploads/2015/11/field-858650_1280-940x300.png';
 
@@ -106,6 +119,9 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   constructor(private ss: Sharedservice,
               private http: Http) {
+
+    this.defaultImage = '../../assets/no-image-placeholder.png';
+
     for (let i = 0; i < 4; i++) {
       this.addSlide();
     }
@@ -343,6 +359,41 @@ export class AppComponent implements OnInit, AfterViewInit {
     return result;
   }
 
+  onPaste(e) {
+    let content;
+    e.preventDefault();
+
+    if( e.clipboardData ){
+      content = e.clipboardData.getData('text/plain');
+      document.execCommand('insertText', false, content);
+      return false;
+    }
+    else if( e.clipboardData ){
+      content = e.clipboardData.getData('Text');
+      if (window.getSelection)
+        window.getSelection().getRangeAt(0).insertNode( document.createTextNode(content) );
+    }
+
+   // this.inputText = this.inputText+' '+content;
+  }
+
+
+   onKeyUp(e,content_id) {
+   console.log('keyup', e);
+   console.log('keyup', $('#'+content_id).text());
+   console.log('keyup', $('#'+content_id).text().length);
+   }
+
+   onKeyDown(e,content_id) {
+    e.prev
+   console.log('keydown', e);
+   console.log('keydown', $('#'+content_id).text());
+   console.log('keydown', $('#'+content_id).text().length);
+   }
+
+  isPostButtonVisible(isvalid) {
+    console.log('isvalid',isvalid);
+  }
 
 }
 

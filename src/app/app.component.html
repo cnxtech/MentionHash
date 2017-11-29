@@ -1,12 +1,21 @@
 <div class="container">
 
+  <div class="thumbnail">
+    <img [lazy-load]="image1" [src]="defaultImage"  alt="Image" />
+
+  </div>
+  <div class="thumbnail">
+    <img [lazy-load]="imagePortrait2" [src]="defaultImage" (isLoading)="setLoad($event)" class="portrait" alt="Image" />
+    <div *ngIf="isLoad" class="loader"></div>
+  </div>
+
   <div class="row" style="margin-bottom: 100px">
     <div class="col-sm-6 col-sm-offset-3">
 
       <p id="jqueryExample" >
         <input type="text" datePicker class="date start" [(ngModel)]="dateStart" [optionsDate]="{format: 'mm/dd/yyyy',autoclose: true}" />
-        <input type="text" timePicker class="time start" [(ngModel)]="timeStart" [optionsTime]="{disableTextInput: false,'timeFormat': 'h:i A',showDuration: false}" /> to
-        <input type="text" timePicker class="time end" [(ngModel)]="timeEnd" [optionsTime]="{disableTextInput: false,'timeFormat': 'h:i A',showDuration: false}" />
+        <input type="text" timePicker class="time start" [(ngModel)]="timeStart" [optionsTime]="{disableTextInput: false,'timeFormat': 'h:i A',step: 1,showDuration: false}" /> to
+        <input type="text" timePicker class="time end" [(ngModel)]="timeEnd" [optionsTime]="{disableTextInput: false,'timeFormat': 'h:i A',step: 1,showDuration: false}" />
         <input type="text" datePicker class="date end" [(ngModel)]="dateEnd" [optionsDate]="{format: 'mm/dd/yyyy',autoclose: true}"/>
       </p>
 
@@ -24,7 +33,7 @@
       <br>
 
       <div class="card">
-        <div data-placeholder="What are you wating for?" id="autocomplete-textarea" contenteditable="true" [(contenteditableModel)]="inputText"></div>
+        <div (keyup)="onKeyUp($event,'autocomplete-textarea')" (keydown)="onKeyDown($event,'autocomplete-textarea')" data-placeholder="What are you wating for?" id="autocomplete-textarea" contenteditable="true" (paste)="onPaste($event)" [(contenteditableModel)]="inputText" ></div>
       </div>
       <!--<div class="form-control" id="autocomplete-textarea" contenteditable="true"
            [(contenteditableModel)]="inputText"></div>-->
@@ -33,16 +42,16 @@
       <br>
 
       <input type="text" name="search" #searchApp (keyup)="setAppSearchData(searchApp.value)"/>
-      <div Mark>
+      <!--<div Mark>
         <span>{{inputText}}</span>
         <p [innerHTML]="inputText | sanitizeHtml"></p>
-      </div>
+      </div>-->
 
       <!--<p>{{getDynamicContent()}}</p>-->
 
       <!--<app-dynamic-content-loader [text]="inputText2"></app-dynamic-content-loader>-->
 
-      <runtime-content [template]="inputText2"></runtime-content>
+      <runtime-content *ngIf="inputText2" [template]="inputText2"></runtime-content>
 
       <!--<div>
         <runtime-content #textContent id="read-more" [template]="inputText2"></runtime-content>
@@ -67,22 +76,22 @@
     </div>
 
 
-    <div class="col-sm-6 col-sm-offset-3" *ngIf="false">
+    <div class="col-sm-6 col-sm-offset-3" *ngIf="true">
 
-      <div Mention onkeypress="return (this.innerHTML.length <= 50)" class="form-control" id="autocompletetextarea"
+      <div Mention  class="form-control" id="autocompletetextarea"
            contenteditable="true"
            [(contenteditableModel)]="inputText"></div>
       <br>
       <br>
-      <div Mention onkeypress="return (this.innerHTML.length <= 50)" class="form-control" id="autocomplete-input"
+      <div Mention class="form-control" id="autocomplete-input"
            contenteditable="true"
            [(contenteditableModel)]="inputText"></div>
 
 
-      <input type="text" name="autocompleteQ" id="autocompleteQ" #autocompleteQ AutocompleteSearch>
+      <input *ngIf="false" type="text" name="autocompleteQ" id="autocompleteQ" #autocompleteQ AutocompleteSearch>
 
 
-      <input type="text" id="demo-input-local" name="blah" placeholder="Blah">
+      <input *ngIf="false" type="text" id="demo-input-local" name="blah" placeholder="Blah">
 
       <!--<rl-tag-input formControlName="tt" id="tt"
                     [autocomplete]="true"
@@ -91,7 +100,7 @@
                     [autocompleteSelectFirstItem]="false"
                     [(ngModel)]="tags1" placeholder="Add skills"></rl-tag-input>-->
 
-      <div style="padding: 20px; background: gray">
+      <div style="padding: 20px; background: gray" *ngIf="false">
         <ngu-letter-avatar [avatar-width]="'80px'"
                            [avatar-height]="'80px'"
                            [avatar-shape]="'round'"
@@ -153,12 +162,7 @@
 
 
 
-  <div class="thumbnail">
-    <img [src]="image1" alt="Image" />
-  </div>
-  <div class="thumbnail">
-    <img [src]="imagePortrait2" class="portrait" alt="Image" />
-  </div>
+
 
   <h1>Image reverse</h1>
 

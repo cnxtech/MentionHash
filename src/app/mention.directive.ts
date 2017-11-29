@@ -1,4 +1,4 @@
-import {AfterViewInit, Directive, ElementRef, OnDestroy} from '@angular/core';
+import {AfterViewInit, Directive, ElementRef, EventEmitter, HostListener, OnDestroy, Output} from "@angular/core";
 
 import * as $ from "jquery";
 import "../assets/jquery.textcomplete.min.js";
@@ -41,7 +41,7 @@ export class MentionDirective implements AfterViewInit,OnDestroy {
           return ' '+hit;
         },
 
-        index: 3,
+        //index: 3,
         // #6 - Template used to display the selected result in the contenteditable's div
         replace: function (hit) {
           let html = '<a href="" style="color: #2196f3">';
@@ -70,7 +70,7 @@ export class MentionDirective implements AfterViewInit,OnDestroy {
           return ' '+hit;
         },
 
-        index: 3,
+        //index: 3,
         // #6 - Template used to display the selected result in the contenteditable's div
         replace: function (hit) {
           let html = '<a href="" style="color: #2196f3">';
@@ -87,6 +87,7 @@ export class MentionDirective implements AfterViewInit,OnDestroy {
       adapter: (<any>$.fn.textcomplete).HTMLContentEditable,
       debounce: 300,
       rightEdgeOffset: 100,
+      //onKeydown: onKeydownFunc,
       footer: '<div></div>'
     });
 
@@ -96,4 +97,41 @@ export class MentionDirective implements AfterViewInit,OnDestroy {
     $(this.autocompletetextarea).textcomplete('destroy');
   }
 
+  /*@HostListener('window:keyup', ['$event'])
+   onKeyUp(e) {
+      console.log('keyup', e);
+      console.log('keyup', $(this.autocompletetextarea).text());
+      console.log('keyup', $(this.autocompletetextarea).text().length);
+      if ($(this.autocompletetextarea).text().length > 3) {
+        this.isValidForPost.emit(true);
+      } else {
+        this.isValidForPost.emit(false);
+      }
+   }*/
+
+   /*@HostListener('window:keydown', ['$event'])
+   onKeyDown(e) {
+     /!*console.log('keydown', e);
+     console.log('keydown', $(this.autocompletetextarea).text());
+     console.log('keydown', $(this.autocompletetextarea).text().length);
+     if ($(this.autocompletetextarea).text().length > 3) {
+       this.isValidForPost.emit(true);
+     } else {
+       this.isValidForPost.emit(false);
+     }*!/
+   }*/
+
 }
+
+var onKeydownFunc = function (e, commands) {
+  console.log(e);
+  console.log(commands);
+  // `commands` has `KEY_UP`, `KEY_DOWN`, `KEY_ENTER`, `KEY_PAGEUP`, `KEY_PAGEDOWN`,
+  // `KEY_ESCAPE` and `SKIP_DEFAULT`.
+  /*if (e.ctrlKey && e.keyCode === 74) {
+    // Treat CTRL-J as enter key.
+    return commands.KEY_ENTER;
+  }*/
+  // If the function does not return a result or undefined is returned,
+  // the plugin uses default behavior.
+};
