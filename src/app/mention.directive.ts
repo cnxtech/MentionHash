@@ -44,7 +44,7 @@ export class MentionDirective implements AfterViewInit,OnDestroy {
         //index: 3,
         // #6 - Template used to display the selected result in the contenteditable's div
         replace: function (hit) {
-          let html = '<a href="" style="color: #2196f3">';
+          let html = '<a #mention data-value="'+hit+'" style="color: #2196f3">';
           html += '@' + hit + '</a> ';
           return ' ' + html;
         },
@@ -73,7 +73,7 @@ export class MentionDirective implements AfterViewInit,OnDestroy {
         //index: 3,
         // #6 - Template used to display the selected result in the contenteditable's div
         replace: function (hit) {
-          let html = '<a href="" style="color: #2196f3">';
+          let html = '<a #hashtag href="" data-value="'+hit+'" style="color: #2196f3">';
           html += '#' + hit + '</a> ';
           return  html;
         },

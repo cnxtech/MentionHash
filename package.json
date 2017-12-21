@@ -33,6 +33,7 @@
     "jquery-ui": "^1.12.1",
     "lodash": "^4.17.4",
     "mark.js": "github:julmot/mark.js",
+    "ng-imgcache": "^1.0.1",
     "ng2-material-dropdown": "^0.7.10",
     "ngu-utility": "^1.0.3",
     "ngx-highlight": "0.0.3",

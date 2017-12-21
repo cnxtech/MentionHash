@@ -40,7 +40,6 @@ interface JQuery {
   datepair(options?: any): any;
 }
 
-
 interface Strategy {
   // Required
   match: RegExp,

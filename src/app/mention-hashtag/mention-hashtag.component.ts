@@ -45,7 +45,7 @@ export class MentionHashtagComponent implements AfterViewInit, OnChanges, OnDest
 
         // #6 - Template used to display the selected result in the contenteditable's div
         replace: function (hit) {
-          let html = '<a href="" style="color: #2196f3">';
+          let html = '<a #mention style="color: #2196f3" data-value="'+hit+'">';
           html += '@' + hit + '</a> ';
           return '' + html;
         },
@@ -73,7 +73,7 @@ export class MentionHashtagComponent implements AfterViewInit, OnChanges, OnDest
 
         // #6 - Template used to display the selected result in the contenteditable's div
         replace: function (hit) {
-          let html = '<a href="" style="color: #2196f3">';
+          let html = '<a #hashtag href="" style="color: #2196f3" data-value="'+hit+'">';
           html += '#' + hit + '</a> ';
           return '' + html;
         },

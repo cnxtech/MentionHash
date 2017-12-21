@@ -32,6 +32,8 @@ import { DatepickerDirective } from './timepicker/datepicker.directive';
 import { DatepairDirective } from './timepicker/datepair/datepair.directive';
 import { ContenteditableDirective } from './directives/contenteditable.directive';
 import {LazyLoadDirective} from "./lazyload/lazy-load.directive";
+import {SearchService} from "./services/search.service";
+import {ImgCacheModule} from "ng-imgcache";
 
 @NgModule({
   declarations: [
@@ -68,10 +70,11 @@ import {LazyLoadDirective} from "./lazyload/lazy-load.directive";
     SwiperModule,
     RlTagInputModule,
     CarouselModule,
+    ImgCacheModule,
     NguUtilityModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [Sharedservice],
+  providers: [Sharedservice,SearchService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

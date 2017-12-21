@@ -1,5 +1,37 @@
 <div class="container">
 
+  <div>
+    <form class="form-inline">
+      <div class="form-group">
+        <input type="search"
+               class="form-control"
+               placeholder="Enter search string"
+               (keyup)="doSearch(search.value.length>2?search.value:null)"
+               #search>
+      </div>
+      <button type="button" class="btn btn-primary" (click)="doSearch(search.value)">Search</button>
+    </form>
+
+    <hr/>
+
+    <div class="text-center">
+      <p class="lead" *ngIf="loadingS">Loading...</p>
+    </div>
+
+    <ul class="list-group">
+      <li class="list-group-item"
+          *ngFor="let track of itunes.results">
+        <img src="{{track.thumbnail}}">
+        <a target="_blank"
+           href="{{track.link}}">{{ track.track }}
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <img img-cache [img-cache-src]="defaultImage">
+  <div img-cache [img-cache-bg-url]="defaultImage"></div>
+
   <div class="thumbnail">
     <img [lazy-load]="image1" [src]="defaultImage"  alt="Image" />
 
@@ -51,7 +83,10 @@
 
       <!--<app-dynamic-content-loader [text]="inputText2"></app-dynamic-content-loader>-->
 
-      <runtime-content *ngIf="inputText2" [template]="inputText2"></runtime-content>
+      <a>{{inputText}}</a>
+      <div [innerHTML]="inputText | sanitizeHtml"></div>
+
+      <!--<runtime-content *ngIf="inputText2" [template]="inputText2"></runtime-content>-->
 
       <!--<div>
         <runtime-content #textContent id="read-more" [template]="inputText2"></runtime-content>

@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit} from "@angular/core";
+import {AfterViewInit, Component, OnInit, Renderer2, ViewChild} from "@angular/core";
 import * as $ from "jquery";
 import "../assets/jquery.textcomplete.min.js";
 import '../assets/jquery.datepair.min.js';
@@ -7,7 +7,11 @@ import {Observable} from "rxjs/Observable";
 import {Http} from "@angular/http";
 import {FormControl} from "@angular/forms";
 import {ApiResponse} from "./interfaces/api-response";
+import {SearchService} from "./services/search.service";
+import {isNullOrUndefined} from "util";
+import {ImgCacheService} from "ng-imgcache";
 
+//declare let $: any;
 // import * as mData from "../../node_modules/url-metadata/index.js";
 
 @Component({
@@ -33,7 +37,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   startDate1: Date = new Date();
 
-  inputText;
+  inputText = '<a (click)="getUserId(94)" data="94">@Arun  Awasthi </a> <a #mention data-value="facebook" style="color: #2196f3">@facebook</a>&nbsp; <a #hashtag style="color: #2196f3" data-value="facebook">#facebook</a>&nbsp;';
 
   title = 'PP';
   searchTermhe = 'test';
@@ -70,7 +74,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   imageCover5 = 'https://s3.ap-south-1.amazonaws.com/jambos/jambo_1509085011596.jpg';
 
 
-  inputText2 = '<a (click)="getUserId(111)" style="cursor: pointer;color: #2196f3">@facebook</a> <span>&nbsp;<a (click)="getUserId(111)" style="cursor: pointer;color: #2196f3">@facebook</a> <span>&nbsp;</span></span>@angular/core: Critical runtime parts of the framework needed by every application. Includes all metadata decorators, Component, Directive, dependency injection, and the component lifecycle hooks.@angular/common: The commonly needed services, pipes, and directives provided by the Angular team.@angular/compiler: Angulars Template Compiler. It understands templates and can convert them to code that makes the application run and render. Typically you donâ??t interact with the compiler directly; rather, you use it indirectly via platform-browser-dynamic or the offline template compiler.@angular/platform-browser: Everything DOM and browser related, especially the pieces that help render into the DOM. This package also includes the bootstrapStatic() method for bootstrapping applications for production builds that pre-compile templates offline.@angular/platform-browser-dynamic: Includes Providers and a bootstrap method for applications that compile templates on the client. Donâ??t use offline compilation. Use this package for bootstrapping during development and for bootstrapping plunker samples.<a (click)="getUserId(111)" style="cursor: pointer;color: #2196f3">@facebook</a> <span>&nbsp;<a (click)="getUserId(111)" style="cursor: pointer;color: #2196f3">@facebook</a> <span>&nbsp;</span></span>@angular/core: Critical runtime parts of the framework needed by every application. Includes all metadata decorators, Component, Directive, dependency injection, and the component lifecycle hooks.@angular/common: The commonly needed services, pipes, and directives provided by the Angular team.@angular/compiler: Angulars Template Compiler. It understands templates and can convert them to code that makes the application run and render. Typically you donâ??t interact with the compiler directly; rather, you use it indirectly via platform-browser-dynamic or the offline template compiler.@angular/platform-browser: Everything DOM and browser related, especially the pieces that help render into the DOM. This package also includes the bootstrapStatic() method for bootstrapping applications for production builds that pre-compile templates offline.@angular/platform-browser-dynamic: Includes Providers and a bootstrap method for applications that compile templates on the client. Donâ??t use offline compilation. Use this package for bootstrapping during development and for bootstrapping plunker samples.';
+  inputText2 = '<a (click)="getUserId(111)" data="@facebook" style="cursor: pointer;color: #2196f3">@facebook</a> <span>&nbsp;<a (click)="getUserId(111)" style="cursor: pointer;color: #2196f3">@facebook</a> <span>&nbsp;</span></span>@angular/core: Critical runtime parts of the framework needed by every application. Includes all metadata decorators, Component, Directive, dependency injection, and the component lifecycle hooks.@angular/common: The commonly needed services, pipes, and directives provided by the Angular team.@angular/compiler: Angulars Template Compiler. It understands templates and can convert them to code that makes the application run and render. Typically you donâ??t interact with the compiler directly; rather, you use it indirectly via platform-browser-dynamic or the offline template compiler.@angular/platform-browser: Everything DOM and browser related, especially the pieces that help render into the DOM. This package also includes the bootstrapStatic() method for bootstrapping applications for production builds that pre-compile templates offline.@angular/platform-browser-dynamic: Includes Providers and a bootstrap method for applications that compile templates on the client. Donâ??t use offline compilation. Use this package for bootstrapping during development and for bootstrapping plunker samples.<a (click)="getUserId(111)" style="cursor: pointer;color: #2196f3">@facebook</a> <span>&nbsp;<a (click)="getUserId(111)" style="cursor: pointer;color: #2196f3">@facebook</a> <span>&nbsp;</span></span>@angular/core: Critical runtime parts of the framework needed by every application. Includes all metadata decorators, Component, Directive, dependency injection, and the component lifecycle hooks.@angular/common: The commonly needed services, pipes, and directives provided by the Angular team.@angular/compiler: Angulars Template Compiler. It understands templates and can convert them to code that makes the application run and render. Typically you donâ??t interact with the compiler directly; rather, you use it indirectly via platform-browser-dynamic or the offline template compiler.@angular/platform-browser: Everything DOM and browser related, especially the pieces that help render into the DOM. This package also includes the bootstrapStatic() method for bootstrapping applications for production builds that pre-compile templates offline.@angular/platform-browser-dynamic: Includes Providers and a bootstrap method for applications that compile templates on the client. Donâ??t use offline compilation. Use this package for bootstrapping during development and for bootstrapping plunker samples.';
 
   inputtextAll = '<div><p #textContent id="read-more" [text]="' + this.inputText2 + '"></p><div><a readMore [readMore-length]="' + this.returnLength(this.inputText2) + '" [readMore-element]="textContent"><span>Continue reading</span></a></div></div>';
 
@@ -117,8 +121,24 @@ export class AppComponent implements OnInit, AfterViewInit {
   searchControl = new FormControl();
   searchText = '';
 
+  private loadingS: boolean = false;
+
+  @ViewChild('mention') mention;
+  @ViewChild('hashtag') hashtag;
+
+
   constructor(private ss: Sharedservice,
-              private http: Http) {
+              private itunes: SearchService,
+              private http: Http,
+              private renderer: Renderer2,
+              private imgCache: ImgCacheService) {
+
+    // Ensure you init once the platform is ready.
+    imgCache.init({
+      // Pass any options here...
+      debug: true,
+      usePersistentCache: true
+    });
 
     this.defaultImage = '../../assets/no-image-placeholder.png';
 
@@ -142,6 +162,14 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   search() {
     // send data
+  }
+
+  doSearch(term: string) {
+    console.log('term',term);
+    if(!isNullOrUndefined(term)) {
+      this.loadingS = true;
+      this.itunes.search(term).then(_ => this.loadingS = false);
+    }
   }
 
   public requestAutocompleteItems = (text: string): Observable<Response> => {
@@ -188,7 +216,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
         // #6 - Template used to display the selected result in the contenteditable's div
         replace: function (hit) {
-          let html = ' '+'<a (click)="getUserId(' + 111 + ')" style="color: #2196f3">';
+          let html = ' '+'<a #mention data-value="'+hit+'" style="color: #2196f3">';
           html += '@' + hit + '</a> ';
           return html;
         },
@@ -217,7 +245,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
         // #6 - Template used to display the selected result in the contenteditable's div
         replace: function (hit) {
-          let html = ' '+'<a style="color: #2196f3">';
+          let html = ' '+'<a #hashtag style="color: #2196f3" data-value="'+hit+'">';
           html += '#' + hit + '</a> ';
           return html;
         },
@@ -238,6 +266,31 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
    // getUrl();
+
+    /*$("#mention").click(function(event){
+      console.log(event.data);
+      console.log($(this).data("data-value"));
+    });
+
+    $("#hashtag").click(function(event){
+      console.log(event);
+      console.log($(this).data("data-value"));
+    });*/
+
+    let global = this.renderer.listen('document', 'click', (evt) => {
+      console.log('Clicking the document', evt);
+      console.log('Clicking the document', evt.srcElement.dataset.value);
+      console.log('Clicking the innerHTML', evt.srcElement.innerHTML);
+      console.log('Clicking the innerText', evt.srcElement.innerText);
+
+      let values = evt.srcElement.innerHTML;
+      if(values.startsWith('@')) {
+        console.log('Clicking the document', evt.srcElement.attributes.data.value);
+      } else if(values.startsWith('#')){
+        // hashtag
+        console.log('hashtag')
+      }
+    });
   }
 
   public getResponse(apiResponse:ApiResponse) {
