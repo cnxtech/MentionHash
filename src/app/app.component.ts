@@ -10,6 +10,7 @@ import {ApiResponse} from "./interfaces/api-response";
 import {SearchService} from "./services/search.service";
 import {isNullOrUndefined} from "util";
 import {ImgCacheService} from "ng-imgcache";
+import {UploadEvent, UploadFile} from "ngx-file-drop";
 
 //declare let $: any;
 // import * as mData from "../../node_modules/url-metadata/index.js";
@@ -37,7 +38,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   startDate1: Date = new Date();
 
-  inputText = '<a (click)="getUserId(94)" data="94">@Arun  Awasthi </a> <a #mention data-value="facebook" style="color: #2196f3">@facebook</a>&nbsp; <a #hashtag style="color: #2196f3" data-value="facebook">#facebook</a>&nbsp;';
+  inputText = '<a #mention data-value="facebook" style="color: #2196f3">@facebook</a>&nbsp; <a #hashtag style="color: #2196f3" data-value="facebook">#facebook</a>&nbsp;';
 
   title = 'PP';
   searchTermhe = 'test';
@@ -125,6 +126,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   @ViewChild('mention') mention;
   @ViewChild('hashtag') hashtag;
+
 
 
   constructor(private ss: Sharedservice,
@@ -446,6 +448,25 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   isPostButtonVisible(isvalid) {
     console.log('isvalid',isvalid);
+  }
+
+  public files: UploadFile[] = [];
+
+  public dropped(event: UploadEvent) {
+    this.files = event.files;
+    for (var file of event.files) {
+      file.fileEntry.file(info => {
+        console.log(info);
+      });
+    }
+  }
+
+  public fileOver(event){
+    console.log(event);
+  }
+
+  public fileLeave(event){
+    console.log(event);
   }
 
 }

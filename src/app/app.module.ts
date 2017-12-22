@@ -34,6 +34,7 @@ import { ContenteditableDirective } from './directives/contenteditable.directive
 import {LazyLoadDirective} from "./lazyload/lazy-load.directive";
 import {SearchService} from "./services/search.service";
 import {ImgCacheModule} from "ng-imgcache";
+import {FileDropModule} from "ngx-file-drop";
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import {ImgCacheModule} from "ng-imgcache";
     RlTagInputModule,
     CarouselModule,
     ImgCacheModule,
-    NguUtilityModule
+    NguUtilityModule,
+    FileDropModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [Sharedservice,SearchService],

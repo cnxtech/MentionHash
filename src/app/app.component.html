@@ -32,13 +32,40 @@
   <img img-cache [img-cache-src]="defaultImage">
   <div img-cache [img-cache-bg-url]="defaultImage"></div>
 
+
+
   <div class="thumbnail">
     <img [lazy-load]="image1" [src]="defaultImage"  alt="Image" />
+
+
 
   </div>
   <div class="thumbnail">
     <img [lazy-load]="imagePortrait2" [src]="defaultImage" (isLoading)="setLoad($event)" class="portrait" alt="Image" />
     <div *ngIf="isLoad" class="loader"></div>
+    <div class="loaderPost"></div>
+  </div>
+
+
+  <div class="center">
+    <file-drop headertext="Drop files here" (onFileDrop)="dropped($event)"
+               (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">
+      <span>optional content (don't set headertext then)</span>
+    </file-drop>
+    <div class="upload-table">
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Name</th>
+        </tr>
+        </thead>
+        <tbody class="upload-name-style">
+        <tr *ngFor="let item of files; let i=index">
+          <td><strong>{{ item.relativePath }}</strong></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <div class="row" style="margin-bottom: 100px">
