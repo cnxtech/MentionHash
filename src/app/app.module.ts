@@ -35,6 +35,7 @@ import {LazyLoadDirective} from "./lazyload/lazy-load.directive";
 import {SearchService} from "./services/search.service";
 import {ImgCacheModule} from "ng-imgcache";
 import {FileDropModule} from "ngx-file-drop";
+import {ChartsModule} from "ng2-charts";
 
 @NgModule({
   declarations: [
@@ -73,7 +74,8 @@ import {FileDropModule} from "ngx-file-drop";
     CarouselModule,
     ImgCacheModule,
     NguUtilityModule,
-    FileDropModule
+    FileDropModule,
+    ChartsModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [Sharedservice,SearchService],

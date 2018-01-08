@@ -469,6 +469,67 @@ export class AppComponent implements OnInit, AfterViewInit {
     console.log(event);
   }
 
+
+  public barChartOptions:any = {
+    scaleShowVerticalLines: false,
+    responsive: true
+  };
+  public barChartLabels:string[] = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul','Aug','Sep','Oct','Nov','Dec'];
+  public barChartType:string = 'bar';
+  public barChartLegend:boolean = true;
+
+  public barChartData:any[] = [
+    {data: [65, 59, 80, 81, 56, 55, 40 ,55,65, 59, 80, 81], label: 'Money'},
+    {data: [28, 48, 40, 19, 86, 27, 90,35,28, 48, 40, 19], label: 'Members'}
+  ];
+
+  public barChartColors:Array<any> = [
+    { // grey
+      backgroundColor: 'rgb(33,150,243)',
+      borderColor: 'rgb(14,141,242)',
+      pointBackgroundColor: 'rgb(14,141,242)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgb(14,141,242)'
+    },
+    { // dark grey
+      backgroundColor: 'rgb(237,239,240)',
+      borderColor: 'rgb(237,239,240)',
+      pointBackgroundColor: 'rgb(237,239,240)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgb(237,239,240)'
+    }
+  ];
+  // events
+  public chartClicked(e:any):void {
+    console.log(e);
+  }
+
+  public chartHovered(e:any):void {
+    console.log(e);
+  }
+
+  public randomize():void {
+    // Only Change 3 values
+    let data = [
+      Math.round(Math.random() * 100),
+      (Math.random() * 100),
+      80,
+      (Math.random() * 100),
+      56,
+      (Math.random() * 100),
+      40,
+      (Math.random() * 100),
+      48,
+      (Math.random() * 100),
+      19,
+      (Math.random() * 100)];
+    let clone = JSON.parse(JSON.stringify(this.barChartData));
+    clone[0].data = data;
+    this.barChartData = clone;
+  }
+
 }
 
 function getUrl() {
