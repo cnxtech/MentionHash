@@ -1080,3 +1080,16 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   margin-right: -5px;
 }
 
+.homeVideo {
+  width: 100%;
+}
+
+video {
+  width: 100%;
+  z-index: 1;
+  margin: 0;
+}
+/*.homeVideo .video {
+
+}*/
+

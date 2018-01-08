@@ -1,6 +1,5 @@
 import {Directive, ElementRef, EventEmitter, Input, OnChanges, OnDestroy, Output, Renderer} from "@angular/core";
 import {ControlValueAccessor, NgModel} from "@angular/forms";
-
 import * as $ from "jquery";
 import "../../assets/bootstrap-datepicker.min.js";
 
