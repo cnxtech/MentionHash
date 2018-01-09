@@ -11,6 +11,7 @@ import {SearchService} from "./services/search.service";
 import {isNullOrUndefined} from "util";
 import {ImgCacheService} from "ng-imgcache";
 import {UploadEvent, UploadFile} from "ngx-file-drop";
+import {BaseChartDirective} from "ng2-charts";
 
 //declare let $: any;
 // import * as mData from "../../node_modules/url-metadata/index.js";
@@ -21,6 +22,8 @@ import {UploadEvent, UploadFile} from "ngx-file-drop";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit, AfterViewInit {
+
+  @ViewChild(BaseChartDirective) chart: BaseChartDirective;
 
   timeStart:string;
   dateStart:string;
@@ -512,22 +515,161 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   public randomize():void {
     // Only Change 3 values
-    let data = [
-      Math.round(Math.random() * 100),
-      (Math.random() * 100),
-      80,
-      (Math.random() * 100),
-      56,
-      (Math.random() * 100),
-      40,
-      (Math.random() * 100),
-      48,
-      (Math.random() * 100),
-      19,
-      (Math.random() * 100)];
-    let clone = JSON.parse(JSON.stringify(this.barChartData));
+
+    let random = Math.round(Math.random() * 12);
+    console.log('random',random);
+    let data;
+    let lable;
+    if(random === 0 || random === 1) {
+      data = [Math.round(Math.random() * 100)];
+      lable = ['Jan'];
+    } else if(random === 2) {
+      data = [
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100)];
+
+      lable = ['Jan', 'Feb'];
+    } else if(random === 3) {
+      data = [
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100)];
+
+      lable = ['Jan', 'Feb', 'Mar'];
+    } else if(random === 4) {
+      data = [
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100)];
+
+      lable = ['Jan', 'Feb', 'Mar', 'Apr'];
+    } else if(random === 5) {
+      data = [
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100)];
+
+      lable = ['Jan', 'Feb', 'Mar', 'Apr', 'May'];
+    } else if(random === 6) {
+      data = [
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100)];
+
+      lable = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
+    } else if(random === 7) {
+      data = [
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100)];
+
+      lable = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'];
+    } else if(random === 8) {
+      data = [
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100)];
+
+      lable = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul','Aug'];
+    } else if(random === 9) {
+      data = [
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100)];
+
+      lable = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul','Aug','Sep'];
+    } else if(random === 10) {
+      data = [
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100)];
+
+      lable = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul','Aug','Sep','Oct'];
+    } else if(random === 11) {
+      data = [
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100)];
+
+      lable = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul','Aug','Sep','Oct','Nov'];
+    } else if(random === 12) {
+      data = [
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100),
+        Math.round(Math.random() * 100)];
+
+      lable = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul','Aug','Sep','Oct','Nov','Dec'];
+    }
+
+    /*let clone = JSON.parse(JSON.stringify(this.barChartData));
     clone[0].data = data;
-    this.barChartData = clone;
+    this.barChartData = clone;*/
+
+    /*let cloneLable = JSON.parse(JSON.stringify(this.barChartLabels));
+    cloneLable.barChartLabels = lable;
+    this.barChartLabels = cloneLable;*/
+
+    this.barChartLabels = [];
+    this.barChartLabels = lable;
+
+
+    this.barChartData = [];
+
+    this.barChartData = [
+      {data: data, label: 'Money'},
+      {data: data, label: 'Members'}
+    ];
+
+    /*let clone = JSON.parse(JSON.stringify(this.barChartData));
+    clone[0].data = data;
+    this.barChartData = clone;*/
+
+    this.chart.chart.config.data.labels = this.barChartLabels;
   }
 
 }
