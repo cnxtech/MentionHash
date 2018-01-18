@@ -13,6 +13,9 @@ import {ImgCacheService} from "ng-imgcache";
 import {UploadEvent, UploadFile} from "ngx-file-drop";
 import {BaseChartDirective} from "ng2-charts";
 
+import * as GetUrls from 'get-urls';
+import * as urlMetadata from 'url-metadata';
+
 //declare let $: any;
 // import * as mData from "../../node_modules/url-metadata/index.js";
 
@@ -270,7 +273,28 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-   // getUrl();
+    //getUrl();
+
+    let text = 'Lorem ipsum dolor sit amet, //sindresorhus.com consectetuer adipiscing http://yeoman.io elit.';
+
+    let urlSet = GetUrls(text);
+
+    console.log('GetUrls(text)',urlSet.size);
+    console.log('GetUrls(text)',urlSet.entries);
+    console.log('GetUrls(text)',urlSet);
+
+    urlSet.forEach((value) => {
+      console.log(value);
+      urlMetadata(value,{fromEmail: 'piyush@bonoboz.in'}).then(
+        function (metadata) { // success handler
+          console.log('metadata',metadata)
+        },
+        function (error) { // failure handler
+          console.log(error)
+        });
+    });
+
+
 
     /*$("#mention").click(function(event){
       console.log(event.data);
@@ -675,7 +699,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 }
 
 function getUrl() {
-  /*const urlMetadata = require('url-metadata')
+  /*const urlMetadata = require('url-metadata');
   urlMetadata('https://www.bonoboz.in/').then(
     function (metadata) { // success handler
       console.log('metadata',metadata)
@@ -684,4 +708,51 @@ function getUrl() {
       console.log(error)
     })*/
 }
+
+
+
+/*function getUrlsFromQueryParams(url) {
+  const URL = require('url');
+  const urlRegex = require('url-regex');
+
+
+  const ret = new Set();
+
+  // TODO: Use `(new URL(url)).searchParams` when targeting Node.js 8
+  const qs = URL.parse(url, true).query;
+
+  for (const key of Object.keys(qs)) {
+    const value = qs[key];
+    if (urlRegex({exact: true}).test(value)) {
+      ret.add(value);
+    }
+  }
+
+  return ret;
+}
+
+function getUrls(text, options)  {
+  const normalizeUrl = require('normalize-url');
+
+  options = options || {};
+
+  const ret = new Set();
+
+  const add = url => {
+    ret.add(normalizeUrl(url.trim().replace(/\.+$/, ''), options));
+  };
+
+  const urls = text.match(urlRegex()) || [];
+  for (const url of urls) {
+    add(url);
+
+    if (options.extractFromQueryString) {
+      for (const qsUrl of getUrlsFromQueryParams(url)) {
+        add(qsUrl);
+      }
+    }
+  }
+
+  return ret;
+}*/
 

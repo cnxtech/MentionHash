@@ -4,6 +4,9 @@ interface NodeModule {
   id: string;
 }
 
+declare module 'get-urls';
+declare module 'url-metadata';
+
 interface JQuery {
   addClass(className: string): JQuery;
   attr(attributeName: string, value: string | number): JQuery;
