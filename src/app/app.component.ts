@@ -44,7 +44,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   startDate1: Date = new Date();
 
-  inputText = '<a #mention data-value="facebook" style="color: #2196f3">@facebook</a>&nbsp; <a #hashtag style="color: #2196f3" data-value="facebook">#facebook</a>&nbsp;';
+  inputText = 'This will be converted to EmojiOne emojis! :thumbsup: :heart: <a #mention data-value="facebook" style="color: #2196f3">@facebook</a>&nbsp; <a #hashtag style="color: #2196f3" data-value="facebook">#facebook</a>&nbsp;';
 
   title = 'PP';
   searchTermhe = 'test';

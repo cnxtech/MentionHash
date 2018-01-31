@@ -170,14 +170,15 @@
 
     <div class="col-sm-6 col-sm-offset-3" *ngIf="true">
 
-      <div Mention  class="form-control" id="autocompletetextarea"
+      <div Mention class="form-control" id="autocompletetextarea"
            contenteditable="true"
+           [innerHTML]="inputText | sanitizeHtml"
            [(contenteditableModel)]="inputText"></div>
       <br>
       <br>
       <div Mention class="form-control" id="autocomplete-input"
            contenteditable="true"
-           [(contenteditableModel)]="inputText"></div>
+           [(contenteditableModel)]="inputText" [innerHTML]="inputText | sanitizeHtml"></div>
 
 
       <input *ngIf="false" type="text" name="autocompleteQ" id="autocompleteQ" #autocompleteQ AutocompleteSearch>

@@ -36,6 +36,7 @@ import {SearchService} from "./services/search.service";
 import {ImgCacheModule} from "ng-imgcache";
 import {FileDropModule} from "ngx-file-drop";
 import {ChartsModule} from "ng2-charts";
+import {EmojiModule} from "angular-emojione";
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import {ChartsModule} from "ng2-charts";
     ImgCacheModule,
     NguUtilityModule,
     FileDropModule,
-    ChartsModule
+    ChartsModule,
+    EmojiModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [Sharedservice,SearchService],
